@@ -1,54 +1,27 @@
 <template>
-  <v-main class="container align-center px-1">
-    <h2 class="font-weight-light mb-2">Admin UI</h2>
-    <v-card>
-      <v-data-table 
-      :headers="headers" 
-      :items="users"> 
-      </v-data-table>
-    </v-card>
-  </v-main>
+<div class="container">
+    <UserShow />
+  </div>
 </template>
 
-
 <script>
-// import UserShow from './UserShow.vue'
+import UserShow from './UserShow.vue'
 import { APIService } from "../../APIService"
+
 const apiService = new APIService();
 
 export default {
   name: "UserIndex",
   components: {
-    // UserShow
+    UserShow
   },
-   data: function(){
-    return { 
-      headers: [
-          { text: 'Id', value: 'id' },
-          { text: 'Name', value: 'name' },
-          { text: 'Description', value: 'description', sortable: false, width:"100" },
-          { text: 'Email', value: 'email', name:'email', width:"180" },
-          { text: 'Action', value: 'actions', sortable: false },
-      ],
-      users: [],
-      numberOfUsers: 0,
-      dialog: false,
-      editedItem: {}
+  methods: {
+    getUsers() {
+      apiService.getUsers(this)
     }
   },
   mounted() {
     this.getUsers();
-  },
-  methods: {
-    getUsers() {
-      console.log(this.users);
-      apiService.getUsers(this)
-    },
   }
-};
+}
 </script>
-
-
-<style scope>
-  .container h4 { display: inline-block ;}
-</style>

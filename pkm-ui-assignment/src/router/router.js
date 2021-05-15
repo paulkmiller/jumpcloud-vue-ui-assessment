@@ -19,8 +19,8 @@ export default new Router({
     },
     {
       path: "/test",
-      name: "add",
-      component: () => import("./../components/pages/UserAdd")
+      name: "save",
+      component: () => import("./../components/pages/UserSave")
     }
   ]
 });
